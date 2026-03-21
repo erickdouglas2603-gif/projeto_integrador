@@ -102,24 +102,53 @@ public class SistemaEscola {
 
     private void cadastrarTurma(){
 
-        System.out.println("Codigo turma:");
-        String codigo = scanner.nextLine();
+    System.out.println("Codigo da turma:");
+    String codigo = scanner.nextLine();
 
-        System.out.println("Etapa ensino:");
-        String etapa = scanner.nextLine();
+    String etapa = escolherEtapa();
 
-        System.out.println("Ano:");
-        int ano = scanner.nextInt();
+    System.out.println("Ano:");
+    int ano = scanner.nextInt();
 
-        System.out.println("Limite vagas:");
-        int limite = scanner.nextInt();
+    System.out.println("Limite de vagas:");
+    int limite = scanner.nextInt();
+    scanner.nextLine();
+
+    Turma turma = new Turma(codigo, etapa, ano, limite);
+
+    turmas.add(turma);
+
+    System.out.println("Turma cadastrada com sucesso!");
+
+}
+
+    private String escolherEtapa(){
+
+    int opcao;
+
+    while(true){
+
+        System.out.println("Escolha a etapa de ensino:");
+        System.out.println("1 - Infantil");
+        System.out.println("2 - Fundamental Inicial");
+        System.out.println("3 - Fundamental Final");
+        System.out.println("4 - Medio");
+
+        opcao = scanner.nextInt();
         scanner.nextLine();
 
-        Turma turma = new Turma(codigo, etapa, ano, limite);
-
-        turmas.add(turma);
+        switch(opcao){
+            case 1: return "infantil";
+            case 2: return "fundamental_inicial";
+            case 3: return "fundamental_final";
+            case 4: return "medio";
+            default:
+                System.out.println("Opcao invalida! Tente novamente.\n");
+        }
 
     }
+
+}
 
     private void listarAlunos(){
 
@@ -218,8 +247,7 @@ public class SistemaEscola {
 
     private void alunosForaDaIdade(){
 
-    System.out.println("Digite a etapa:");
-    String etapa = scanner.nextLine();
+    String etapa = escolherEtapa();
 
     int contador = 0;
 
