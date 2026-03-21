@@ -41,4 +41,8 @@ public class Turma {
         return alunos;
     }
 
+    public String getEtapaEnsino(){
+    return etapaEnsino;
+}
+
 }

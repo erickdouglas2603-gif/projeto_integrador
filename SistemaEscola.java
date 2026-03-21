@@ -31,6 +31,7 @@ public class SistemaEscola {
             System.out.println("3 - Listar alunos");
             System.out.println("4 - Matricular aluno em turma");
             System.out.println("5 - Listar turmas e alunos matriculados");
+            System.out.println("6 - Alunos fora da idade por etapa");
             System.out.println("0 - Sair");
 
             opcao = scanner.nextInt();
@@ -56,6 +57,10 @@ public class SistemaEscola {
                 
                 case 5:
                     listarAlunosDaTurma();
+                break;
+                
+                case 6:
+                    alunosForaDaIdade();
                 break;
 
 
@@ -208,5 +213,84 @@ public class SistemaEscola {
         }
 
     }
+
+    
+
+    private void alunosForaDaIdade(){
+
+    System.out.println("Digite a etapa:");
+    String etapa = scanner.nextLine();
+
+    int contador = 0;
+
+    for(Turma t : turmas){
+
+        if(t.getEtapaEnsino().equalsIgnoreCase(etapa)){
+
+            for(Aluno a : t.getAlunos()){
+
+                int idade = a.getIdade();
+
+                if(!idadeValida(etapa, idade)){
+
+                    contador++;
+
+                    String etapaCorreta = etapaCorreta(idade);
+
+                    System.out.println("\nAluno fora da idade:");
+                    System.out.println("Nome: " + a.getNome());
+                    System.out.println("Idade: " + idade);
+                    System.out.println("Turma: " + t.getCodigo());
+                    System.out.println("Etapa atual: " + etapa);
+                    System.out.println("Etapa correta: " + etapaCorreta);
+
+                }
+
+            }
+
+        }
+
+    }
+
+    System.out.println("\nTotal de alunos fora da idade: " + contador);
+
+}
+
+private boolean idadeValida(String etapa, int idade){
+
+    switch(etapa.toLowerCase()){
+
+        case "infantil":
+            return idade < 6;
+
+        case "fundamental_inicial":
+            return idade >= 6 && idade <= 11;
+
+        case "fundamental_final":
+            return idade >= 11 && idade <= 15;
+
+        case "medio":
+            return idade >= 15 && idade <= 18;
+
+        default:
+            return false;
+    }
+
+}
+
+private String etapaCorreta(int idade){
+
+    if(idade < 6){
+        return "infantil";
+    } else if(idade <= 11){
+        return "fundamental_inicial";
+    } else if(idade <= 15){
+        return "fundamental_final";
+    } else {
+        return "medio";
+    }
+
+}
+    
 
 }
