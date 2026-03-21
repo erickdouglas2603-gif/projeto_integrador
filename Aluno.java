@@ -1,0 +1,30 @@
+import java.time.LocalDate;
+import java.time.Period;
+
+public class Aluno {
+
+    private String nome;
+    private String cpf;
+    private String endereco;
+    private LocalDate dataNascimento;
+
+    public Aluno(String nome, String cpf, String endereco, LocalDate dataNascimento) {
+
+        this.nome = nome;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.dataNascimento = dataNascimento;
+
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public int getIdade() {
+
+        return Period.between(dataNascimento, LocalDate.now()).getYears();
+
+    }
+
+}
