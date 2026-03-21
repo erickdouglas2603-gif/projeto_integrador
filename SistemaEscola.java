@@ -30,7 +30,7 @@ public class SistemaEscola {
             System.out.println("2 - Cadastrar turma");
             System.out.println("3 - Listar alunos");
             System.out.println("4 - Matricular aluno em turma");
-            System.out.println("5 - Listar turmas e alunos matriculados");
+            System.out.println("5 - Listar turmas");
             System.out.println("6 - Alunos fora da idade por etapa");
             System.out.println("0 - Sair");
 
@@ -56,7 +56,7 @@ public class SistemaEscola {
                 break;
                 
                 case 5:
-                    listarAlunosDaTurma();
+                    listarTurmas();
                 break;
                 
                 case 6:
@@ -224,25 +224,7 @@ public class SistemaEscola {
 
     }
 
-    private void listarAlunosDaTurma(){
-        System.out.println("Codigo da turma:");
-        String codigoTurma = scanner.nextLine();
-
-        Turma turma = buscarTurmaPorCodigo(codigoTurma);
-
-        if(turma == null){
-            System.out.println("Turma nao encontrada!");
-            return;
-        }
-
-        System.out.println("Alunos matriculados na turma " + turma.getCodigo() + ":");
-
-        for(Aluno aluno : turma.getAlunos()){
-            System.out.println(aluno.getNome());
-        }
-
-    }
-
+    
     
 
     private void alunosForaDaIdade(){
@@ -316,6 +298,27 @@ private String etapaCorreta(int idade){
         return "fundamental_final";
     } else {
         return "medio";
+    }
+
+}
+
+private void listarTurmas(){
+
+    if(turmas.isEmpty()){
+        System.out.println("Nenhuma turma cadastrada.");
+        return;
+    }
+
+    System.out.println("\n=== TURMAS CADASTRADAS ===");
+
+    for(Turma t : turmas){
+
+        System.out.println("---------------------------");
+        System.out.println("Codigo: " + t.getCodigo());
+        System.out.println("Etapa: " + t.getEtapaEnsino());
+        System.out.println("Ano: " + t.getAno());
+        System.out.println("Matriculados: " + t.getQuantidade() + "/" + t.getLimiteVagas());
+
     }
 
 }

@@ -43,6 +43,19 @@ public class Turma {
 
     public String getEtapaEnsino(){
     return etapaEnsino;
-}
+    }
+
+    
+    public int getAno(){
+        return ano;
+    }
+
+    public int getLimiteVagas(){
+        return limiteVagas;
+    }
+    
+    public int getQuantidade(){
+    return alunos.size();
+    }
 
 }
