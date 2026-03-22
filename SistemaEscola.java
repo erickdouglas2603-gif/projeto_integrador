@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class SistemaEscola {
 
@@ -152,17 +153,33 @@ public class SistemaEscola {
 
     private void listarAlunos(){
 
-        listaAlunos.ordenar();
+    listaAlunos.ordenar();
 
-        for(int i=0;i<listaAlunos.tamanho();i++){
+    System.out.println("\n=== LISTA DE ALUNOS ===");
 
-            Aluno aluno = listaAlunos.get(i);
+    for(int i = 0; i < listaAlunos.tamanho(); i++){
 
-            System.out.println(aluno.getNome() + " - " + aluno.getIdade() + " anos");
+        Aluno aluno = listaAlunos.get(i);
 
+        String turma = buscarTurmaDoAluno(aluno);
+
+        System.out.println("---------------------------");
+        System.out.println("Nome: " + aluno.getNome());
+        System.out.println("CPF: " + aluno.getCpf());
+        System.out.println("Nascimento: " + aluno.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        System.out.println("Idade: " + aluno.getIdade() + " anos");
+        System.out.println("Endereco: " + aluno.getEndereco());
+        System.out.println("CPF: " + aluno.getCpf());
+
+        if(turma != null){
+            System.out.println("Turma: " + turma);
+        } else {
+            System.out.println("Turma: NÃO MATRICULADO");
         }
 
     }
+
+}
 
     private Aluno buscarAlunoPorNome(String nome){
 
@@ -178,6 +195,19 @@ public class SistemaEscola {
 
         return null;
 
+    }
+
+    private String buscarTurmaDoAluno(Aluno aluno){
+
+    for(Turma t : turmas){
+
+        if(t.getAlunos().contains(aluno)){
+            return t.getCodigo();
+        }
+
+    }
+
+    return null;
     }
 
     private Turma buscarTurmaPorCodigo(String codigo){

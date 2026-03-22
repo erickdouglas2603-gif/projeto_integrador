@@ -27,4 +27,16 @@ public class Aluno {
 
     }
 
+    public String getCpf(){
+    return cpf;
+    }
+
+    public LocalDate getDataNascimento(){
+    return dataNascimento;
+    }
+
+    public String getEndereco(){
+    return endereco;
+    }
+
 }
