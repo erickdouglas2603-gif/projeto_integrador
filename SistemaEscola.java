@@ -169,7 +169,7 @@ public class SistemaEscola {
         System.out.println("Nascimento: " + aluno.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         System.out.println("Idade: " + aluno.getIdade() + " anos");
         System.out.println("Endereco: " + aluno.getEndereco());
-        System.out.println("CPF: " + aluno.getCpf());
+        
 
         if(turma != null){
             System.out.println("Turma: " + turma);
