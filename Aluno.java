@@ -39,4 +39,11 @@ public class Aluno {
     return endereco;
     }
 
+    @Override
+    public String toString(){
+    return nome + " - " + getIdade() + " anos";
+}
+
+    
+
 }

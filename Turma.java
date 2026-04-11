@@ -58,4 +58,14 @@ public class Turma {
     return alunos.size();
     }
 
+    @Override
+    public String toString(){
+    return "Codigo: " + codigo + 
+           " | Etapa: " + etapaEnsino + 
+           " | Ano: " + ano + 
+           " | Matriculados: " + alunos.size() + "/" + limiteVagas;
+}
+
+    
+
 }
