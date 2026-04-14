@@ -97,7 +97,11 @@ public class SistemaEscola {
 
         Aluno aluno = new Aluno(nome, cpf, endereco, data);
 
-        listaAlunos.incluirNoFim(aluno);
+        try{
+            listaAlunos.incluirNoFim(aluno);
+        } catch(ExcecaoDeAlunoJaExistente e){
+            System.out.println(e.getMessage());
+        }
 
     }
 
@@ -164,10 +168,9 @@ public class SistemaEscola {
         String turma = buscarTurmaDoAluno(aluno);
 
         System.out.println("---------------------------");
-        System.out.println("Nome: " + aluno.getNome());
+        System.out.println(aluno.toString());
         System.out.println("CPF: " + aluno.getCpf());
         System.out.println("Nascimento: " + aluno.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        System.out.println("Idade: " + aluno.getIdade() + " anos");
         System.out.println("Endereco: " + aluno.getEndereco());
         
 
@@ -212,9 +215,11 @@ public class SistemaEscola {
 
     private Turma buscarTurmaPorCodigo(String codigo){
 
+        Turma chave = new Turma(codigo, "", 0, 0);
+
         for(Turma turma : turmas){
 
-            if(turma.getCodigo().equalsIgnoreCase(codigo)){
+            if(turma.equals(chave)){
                 return turma;
             }
 
@@ -344,10 +349,7 @@ private void listarTurmas(){
     for(Turma t : turmas){
 
         System.out.println("---------------------------");
-        System.out.println("Codigo: " + t.getCodigo());
-        System.out.println("Etapa: " + t.getEtapaEnsino());
-        System.out.println("Ano: " + t.getAno());
-        System.out.println("Matriculados: " + t.getQuantidade() + "/" + t.getLimiteVagas());
+        System.out.println(t.toString());
 
     }
 

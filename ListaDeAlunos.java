@@ -10,7 +10,11 @@ public class ListaDeAlunos {
 
     }
 
-    public void incluirNoInicio(Aluno aluno){
+    public void incluirNoInicio(Aluno aluno) throws ExcecaoDeAlunoJaExistente{
+
+        if(contem(aluno)){
+            throw new ExcecaoDeAlunoJaExistente();
+        }
 
         for(int i = tamanho; i > 0; i--){
 
@@ -23,11 +27,26 @@ public class ListaDeAlunos {
 
     }
 
-    public void incluirNoFim(Aluno aluno){
+    public void incluirNoFim(Aluno aluno) throws ExcecaoDeAlunoJaExistente{
+
+        if(contem(aluno)){
+            throw new ExcecaoDeAlunoJaExistente();
+        }
 
         alunos[tamanho] = aluno;
         tamanho++;
 
+    }
+
+    private boolean contem(Aluno aluno){
+
+        for(int i = 0; i < tamanho; i++){
+            if(alunos[i] != null && alunos[i].equals(aluno)){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void ordenar(){
